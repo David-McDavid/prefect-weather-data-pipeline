@@ -29,38 +29,7 @@ This will start the Prefect server locally. By default, it will be available at:
 prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
 ```
 
-## Running the Test Workflow
-
-1. Create a new file called `test_workflow.py`:
-```python
-from prefect import flow, task
-from pyspark.sql import SparkSession
-
-@task
-def create_spark_session():
-    return SparkSession.builder \
-        .appName("TestWorkflow") \
-        .getOrCreate()
-
-@task
-def sample_spark_operation(spark):
-    # Create a sample DataFrame
-    data = [("Alice", 1), ("Bob", 2), ("Charlie", 3)]
-    df = spark.createDataFrame(data, ["name", "value"])
-    return df.count()
-
-@flow(name="test-workflow")
-def main():
-    spark = create_spark_session()
-    count = sample_spark_operation(spark)
-    print(f"Number of rows: {count}")
-    spark.stop()
-
-if __name__ == "__main__":
-    main()
-```
-
-2. Run the workflow:
+3. Run the test workflow:
 ```bash
 python test_workflow.py
 ```
