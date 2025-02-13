@@ -30,5 +30,5 @@
       "PYTHONPATH": "${containerWorkspaceFolder}",
       "SPARK_HOME": "/opt/spark"
   },
-  "postCreateCommand": "pip install --user prefect pyspark black pylint"
+  "postCreateCommand": "pip install --user prefect pyspark black pylint psycopg2-binary"
 }

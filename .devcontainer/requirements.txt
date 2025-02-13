@@ -4,3 +4,4 @@ black
 pylint
 jupyter
 ipykernel
+psycopg2-binary
