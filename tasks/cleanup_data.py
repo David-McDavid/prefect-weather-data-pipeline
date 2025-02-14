@@ -1,6 +1,7 @@
 import uuid
 import json
 from prefect import task
+from datetime import datetime
 
 @task
 def cleanup_weather_data(cityId: object, weather: object):
@@ -12,6 +13,7 @@ def cleanup_weather_data(cityId: object, weather: object):
     return {
         'id': uuid.uuid4(),
         'cityId': cityId,
+        'local_time': datetime.now(),
         'temp': weather['main']['temp'],
         'feels_like': weather['main']['feels_like'],
         'temp_min': weather['main']['temp_min'],

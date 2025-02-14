@@ -1,6 +1,7 @@
-from sqlalchemy import Column, Float, Integer, ForeignKey, String
+from sqlalchemy import Column, Float, Integer, ForeignKey, String, DateTime
 from sqlalchemy.dialects.postgresql import UUID
 from sqlalchemy.orm import relationship
+from datetime import datetime
 import uuid
 from Base import Base
 
@@ -8,6 +9,7 @@ class WeatherData(Base):
     __tablename__ = 'weather_data'
     id = Column(UUID(as_uuid=True), primary_key=True, default=uuid.uuid4)
     city_id = Column(UUID(as_uuid=True), ForeignKey('city.id'), nullable=False)
+    local_time = Column(DateTime(timezone=True), nullable=False)
     temp = Column(Float, nullable=False)
     feels_like = Column(Float, nullable=False)
     temp_min = Column(Float, nullable=False)
