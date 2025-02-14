@@ -34,6 +34,19 @@ prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
 python test_workflow.py
 ```
 
+## Setting Up SQLAlchemy Database
+
+1. Install the required Python packages for SQLAlchemy and your database:
+```
+pip install sqlalchemy psycopg2  # For PostgreSQL
+```
+2. Run the following command to set up the database tables:
+
+```
+python ./database/main.py
+```
+This will create the necessary database tables defined in the SQLAlchemy models.
+
 ## Monitoring Your Workflow
 
 1. Open your browser and navigate to http://127.0.0.1:4200
