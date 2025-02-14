@@ -9,4 +9,4 @@ def fetch_weather(location: object, api_key: str):
 @task
 def fetch_location(city: object, api_key: str):
     """Task 1: Fetch the location for a city"""
-    return httpx.get(f"http://api.openweathermap.org/geo/1.0/direct?q={city['city']},{city['state']},{city['countryCode']}&limit=5&appid={api_key}").json()
+    return httpx.get(f"http://api.openweathermap.org/geo/1.0/direct?q={city['city']},{city['state']},{city['countryCode']}&limit=5&appid={api_key}").json()[0]
