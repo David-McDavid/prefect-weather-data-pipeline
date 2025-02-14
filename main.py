@@ -13,10 +13,10 @@ api_key = os.getenv("OPEN_WEATHER_API_KEY")
 db_url = os.getenv("DATABASE_URL")
 engine = create_engine(db_url)
 
-cities = [
-  {"city": "Anchorage", "state": "Alaska", "countryCode": "USA"},
-  {"city": "Nashville", "state": "Tennessee", "countryCode": "USA"}
-]
+# cities = [
+#   {"city": "Anchorage", "state": "Alaska", "countryCode": "USA"},
+#   {"city": "Nashville", "state": "Tennessee", "countryCode": "USA"}
+# ]
 
 @flow(log_prints=True)
 def show_cities(cities: list[object]):
@@ -32,6 +32,6 @@ def show_cities(cities: list[object]):
 
 
 if __name__ == "__main__":
-    show_cities(cities)
-    # with open("./assets/cities.json", "r") as file:
-    #   cities = json.load(file)['cities']
+    # show_cities(cities)
+    with open("./assets/cities.json", "r") as file:
+      cities = json.load(file)['cities']

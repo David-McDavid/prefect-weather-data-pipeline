@@ -34,6 +34,24 @@ prefect config set PREFECT_API_URL=http://127.0.0.1:4200/api
 python test_workflow.py
 ```
 
+## Fetching Current Weather Data
+
+1. Ensure you have the assets/cities.json file in your project directory. This file should contain a list of cities for which you want to fetch weather data. Example format:
+
+```
+[
+  {"city": "New York", "country": "US"},
+  {"city": "London", "country": "GB"}
+]
+```
+
+2. To fetch the current weather data based on the cities in the assets/cities.json file, run:
+
+```
+python main.py
+```
+This script will fetch the weather data for the cities listed in assets/cities.json using the OpenWeatherMap API.
+
 ## Setting Up SQLAlchemy Database
 
 1. Install the required Python packages for SQLAlchemy and your database:
