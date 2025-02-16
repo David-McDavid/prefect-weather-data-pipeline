@@ -15,6 +15,16 @@ This guide will help you set up and run Prefect server along with your workflows
 
 ## Setting Up Prefect
 
+### Using PostgreSQL as the Prefect Database
+
+**Note:** SQLite is not concurrent friendly and PostgreSQL is recommended. If you wish to use the built-in SQLite, you should limit the flow to not run concurrently.
+
+To use PostgreSQL instead of SQLite for Prefect, run the following command:
+```bash
+prefect config set PREFECT_API_DATABASE_CONNECTION_URL="postgresql+asyncpg://{user}:{pass}@{url}:{port}/{database}"
+```
+Replace `{user}`, `{pass}`, `{url}`, `{port}`, and `{database}` with your PostgreSQL credentials and connection details.
+
 1. Start the Prefect server:
 ```bash
 prefect server start

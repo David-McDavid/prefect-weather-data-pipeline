@@ -1,7 +1,15 @@
+"""
+This module contains a Prefect flow and tasks for
+fetching and displaying the number of stars for GitHub repositories.
+
+Functions:
+    - show_stars: Flow to show the number of stars for a list of GitHub repositories.
+    - fetch_stats: Task to fetch the statistics for a GitHub repository.
+    - get_stars: Task to get the number of stars from GitHub repository statistics.
+"""
+
 import httpx
-
-from prefect import flow, task # Prefect flow and task decorators
-
+from prefect import flow, task  # Prefect flow and task decorators
 
 @flow(log_prints=True)
 def show_stars(github_repos: list[str]):
@@ -16,18 +24,15 @@ def show_stars(github_repos: list[str]):
         # Print the result
         print(f"{repo}: {stars} stars")
 
-
 @task
 def fetch_stats(github_repo: str):
     """Task 1: Fetch the statistics for a GitHub repo"""
     return httpx.get(f"https://api.github.com/repos/{github_repo}").json()
 
-
 @task
 def get_stars(repo_stats: dict):
     """Task 2: Get the number of stars from GitHub repo statistics"""
     return repo_stats['stargazers_count']
-
 
 # Run the flow
 if __name__ == "__main__":

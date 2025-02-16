@@ -1,23 +1,35 @@
+"""
+This module contains tasks for cleaning up city and weather data.
+
+Functions:
+    - cleanup_weather_data: Task to clean up weather data for a city.
+    - cleanup_city_obect: Task to clean up city data.
+"""
+
 import uuid
 import json
-from prefect import task
 from datetime import datetime
+from prefect import task
 
-# @task
 @task(cache_result_in_memory=False, persist_result=False)
-def cleanup_weather_data(cityId: object, weather: object):
-    """Task 1: Get or create the city"""
+def cleanup_weather_data(city_id: object, weather: object):
+    """
+    Task to clean up weather data for a city.
 
-    if not cityId:
-        return None
-    
+    Args:
+        city_id (object): The ID of the city.
+        weather (object): A dictionary or JSON string containing weather data.
+
+    Returns:
+        dict: A dictionary containing cleaned weather data.
+    """
     if isinstance(weather, str):
         weather = json.loads(weather)
 
     try:
         return {
             'id': uuid.uuid4(),
-            'city_id': cityId,
+            'city_id': city_id,
             'local_time': datetime.now(),
             'temp': weather.get('main', {}).get('temp'),
             'feels_like': weather.get('main', {}).get('feels_like'),
@@ -39,11 +51,17 @@ def cleanup_weather_data(cityId: object, weather: object):
         print('weather: ', weather)
         raise e
 
-
-# @task
 @task(cache_result_in_memory=False, persist_result=False)
 def cleanup_city_obect(city: object):
-    """Task 1: Get or create the city"""
+    """
+    Task to clean up city data.
+
+    Args:
+        city (object): A dictionary containing city information.
+
+    Returns:
+        dict: A dictionary containing cleaned city data.
+    """
     try:
         return {
             'id': uuid.uuid4(),
