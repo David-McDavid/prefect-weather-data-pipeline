@@ -1,5 +1,5 @@
 {
-  "name": "PySpark Prefect Development",
+  "name": "Prefect Development",
   "build": {
       "dockerfile": "Dockerfile"
   },
@@ -27,8 +27,7 @@
       }
   },
   "remoteEnv": {
-      "PYTHONPATH": "${containerWorkspaceFolder}",
-      "SPARK_HOME": "/opt/spark"
+      "PYTHONPATH": "${containerWorkspaceFolder}"
   },
-  "postCreateCommand": "pip install --user prefect pyspark black pylint psycopg2-binary"
+  "postCreateCommand": "pip install --user prefect black pylint psycopg2-binary"
 }

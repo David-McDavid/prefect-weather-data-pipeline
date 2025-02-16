@@ -1,4 +1,4 @@
-# PySpark and Prefect Workflow Project
+# Prefect Workflow Project
 
 This guide will help you set up and run Prefect server along with your workflows.
 
@@ -96,14 +96,8 @@ prefect server status
 prefect config view
 ```
 
-3. Check PySpark connection by running a simple PySpark shell:
-```bash
-pyspark
-```
-
 ## Common Issues
 
 - If you get a "Connection refused" error, make sure the Prefect server is running
-- If PySpark fails to start, check your JAVA_HOME environment variable
 - If you can't access the UI, ensure no other services are using port 4200
 

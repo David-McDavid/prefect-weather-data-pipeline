@@ -1,5 +1,4 @@
 prefect>=2.14.0
-pyspark==${SPARK_VERSION}
 black
 pylint
 jupyter
